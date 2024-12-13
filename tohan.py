@@ -10,7 +10,7 @@ os.system(f"adduser {username} sudo")
 os.system(f"echo '{username}:{password}' | sudo chpasswd")
 os.system("sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd")
 
-Pin = 1234 #@param {type: "integer"}
+Pin = 12345678 #@param {type: "integer"}
 Autostart = True #@param {type: "boolean"}
 
 class CRDSetup:
@@ -36,7 +36,7 @@ class CRDSetup:
         os.system("sudo apt purge light-locker")
         os.system("sudo apt install --reinstall xfce4-screensaver")
         os.system("systemctl disable lightdm.service")
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m XFCE4 Desktop Environment has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m XFCE4 Desktop Environment has been installed successfully. Please wait for the next package installation...")
 
     @staticmethod
     def changewall():
@@ -45,38 +45,38 @@ class CRDSetup:
         custom_wallpaper_path = os.path.join(current_directory, "xfce-verticals.png")
         destination_path = '/usr/share/backgrounds/xfce/'
         shutil.copy(custom_wallpaper_path, destination_path)
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Tohan System update successfully. Please wait for the required package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Tohan System update successfully. Please wait for the required package installation...")
 
     @staticmethod
     def installSnapd():
         subprocess.run(["apt", "install", "--assume-yes", "snapd"])
         subprocess.run(["snap", "install", "snap-store"])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Snap Store has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Snap Store has been installed successfully. Please wait for the next package installation...")
 
     @staticmethod
     def installGoogleChrome():
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"])
         subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"])
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Google Chrome has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Google Chrome has been installed successfully. Please wait for the next package installation...")
 
     @staticmethod
     def installCRD():
         subprocess.run(['wget', 'https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb'])
         subprocess.run(['dpkg', '--install', 'chrome-remote-desktop_current_amd64.deb'])
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Chrome Remote Desktop has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Chrome Remote Desktop has been installed successfully. Please wait for the next package installation...")
     
     @staticmethod
     def installTelegram():
         subprocess.run(["apt", "install", "--assume-yes", "telegram-desktop"])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Telegram Desktop has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Telegram Desktop has been installed successfully. Please wait for the next package installation...")
    
     @staticmethod
     def installQbit():
         subprocess.run(["sudo", "apt", "update"])
         subprocess.run(["sudo", "apt", "install", "-y", "qbittorrent"])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Qbittorrent has been installed successfully. Almost done...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Qbittorrent has been installed successfully. Almost done...")
 
     @staticmethod
     def finish(user):
@@ -104,7 +104,7 @@ X-GNOME-Autostart-enabled=true""".format(link)
         
         print(r'''
           
-+----------------------- Tohan RDP Server ----------------------+
++----------------------- \033[33mTohan RDP Server \033[0m----------------------+
 | @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ | 
 | @@@@@@        @@@     @@@  @@@@@  @@@@@  @@@@@  @@@@@  @@@@@@ |
 | @@@@@@@@@  @@@@  @@@@% @@  @@@@@  @@@@    @@@@   &@@@  @@@@@@ |
@@ -112,21 +112,31 @@ X-GNOME-Autostart-enabled=true""".format(link)
 | @@@@@@@@@  @@@  @@@@@  @@  @@@@@  @@ ______ &@  @@@*   @@@@@@ |
 | @@@@@@@@@  @@@@(    (@@@@  @@@@@  @ .@@@@@@  @  @@@@@  @@@@@@ |
 | @@@@@@@@&@@@@@@@@@@@@@@@@&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@ |
-+-------------------------[by Thuaha Hadi]----------------------+      
++-------------------------\033[36m[\033[92mby \033[91mThuaha Hadi\033[36m]\033[0m----------------------+      
                  
     ''')
-        print ("Congratulations! Your RDP server is now ready. You can access it through Google Remote Desktop app or by using the link: https://remotedesktop.google.com. Your login credentials are provided below.\n")
-        print("Log in PIN : 1234") 
-        print("User Name : tohan") 
-        print("User Pass : root") 
+        print ("\033[32mCongratulations! \033[0mYour RDP server is now ready. \nYou can access it through \033[32mGoogle Remote Desktop \033[0mapp or by using the link: https://remotedesktop.google.com. \nYour login credentials are provided below.\n")
+
+        print(r'''
+            
+            +------------------------------------------+  
+            |             \033[32mLogin Credentials\033[0m            |
+            +------------------------------------------+
+            |  \033[93mLog in PIN\033[0m        :       \033[96m12345678\033[0m      |
+            +------------------------------------------+
+            |  \033[93mUser Name\033[0m         :       \033[96mtohan\033[0m         |
+            +------------------------------------------+
+            |  \033[93mUser Password\033[0m     :       \033[96mroot\033[0m          |
+            +------------------------------------------+
+              ''')
         while True:
             pass
 
 try:
     if CRD_SSH_Code == "":
         print("Please enter authcode from the given link")
-    elif len(str(Pin)) < 4:
-        print("Enter a pin more or equal to 4 digits")
+    elif len(str(Pin)) < 6:
+        print("Enter a pin more or equal to 6 digits")
     else:
         CRDSetup(username)
 except NameError as e:
