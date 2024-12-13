@@ -1,4 +1,6 @@
 # ubuntu-rdps
+```
+!curl -s -L -o tohan.py 'https://raw.githubusercontent.com/thuahahadi/ubuntu-rdps/main/tohan.py'
 
-!curl -s -L -o run.py 'https://github.com/thuahahadi/ubuntu-rdps/tohan.py'
-!python run.py
+!python tohan.py
+```
