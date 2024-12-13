@@ -114,7 +114,7 @@ X-GNOME-Autostart-enabled=true""".format(link)
 +-------------------------[by Thuaha Hadi]----------------------+      
                  
     ''')
-        print ("\n")
+        print ("Congratulations! Your RDP server is now ready. You can access it through Google Remote Desktop or by using the link: https://remotedesktop.google.com. Your login credentials are provided below.\n")
         print("Log in PIN : 1234") 
         print("User Name : tohan") 
         print("User Pass : root") 
