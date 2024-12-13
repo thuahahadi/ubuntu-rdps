@@ -16,21 +16,15 @@ Autostart = True #@param {type: "boolean"}
 class CRDSetup:
     def __init__(self, user):
         os.system("apt update")
-        self.installCRD()
         self.installDesktopEnvironment()
         self.changewall()
-        self.installGoogleChrome()
-        self.installTelegram()
         self.installSnapd()
+        self.installGoogleChrome()
+        self.installCRD()
+        self.installTelegram()
         self.installQbit()
         self.finish(user)
 
-    @staticmethod
-    def installCRD():
-        subprocess.run(['wget', 'https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb'])
-        subprocess.run(['dpkg', '--install', 'chrome-remote-desktop_current_amd64.deb'])
-        subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
-        print("Chrome Remoted Desktop Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     @staticmethod
     def installDesktopEnvironment():
@@ -42,25 +36,7 @@ class CRDSetup:
         os.system("sudo apt purge light-locker")
         os.system("sudo apt install --reinstall xfce4-screensaver")
         os.system("systemctl disable lightdm.service")
-        print("Installed XFCE4 Desktop Environment !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-    @staticmethod
-    def installGoogleChrome():
-        subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"])
-        subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"])
-        subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
-        print("Google Chrome Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    
-    @staticmethod
-    def installTelegram():
-        subprocess.run(["apt", "install", "--assume-yes", "telegram-desktop"])
-        print("Telegram Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-    @staticmethod
-    def installSnapd():
-        subprocess.run(["apt", "install", "--assume-yes", "snapd"])
-        subprocess.run(["snap", "install", "snap-store"])
-        print("Snap Store Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m XFCE4 Desktop Environment has been installed successfully. Please wait for the next package installation...")
 
     @staticmethod
     def changewall():
@@ -69,13 +45,38 @@ class CRDSetup:
         custom_wallpaper_path = os.path.join(current_directory, "xfce-verticals.png")
         destination_path = '/usr/share/backgrounds/xfce/'
         shutil.copy(custom_wallpaper_path, destination_path)
-        print("Wallpaper Changed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Tohan System update successfully. Please wait for the required package installation...")
+
+    @staticmethod
+    def installSnapd():
+        subprocess.run(["apt", "install", "--assume-yes", "snapd"])
+        subprocess.run(["snap", "install", "snap-store"])
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Snap Store has been installed successfully. Please wait for the next package installation...")
+
+    @staticmethod
+    def installGoogleChrome():
+        subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"])
+        subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"])
+        subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Google Chrome has been installed successfully. Please wait for the next package installation...")
+
+    @staticmethod
+    def installCRD():
+        subprocess.run(['wget', 'https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb'])
+        subprocess.run(['dpkg', '--install', 'chrome-remote-desktop_current_amd64.deb'])
+        subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Chrome Remote Desktop has been installed successfully. Please wait for the next package installation...")
+    
+    @staticmethod
+    def installTelegram():
+        subprocess.run(["apt", "install", "--assume-yes", "telegram-desktop"])
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Telegram Desktop has been installed successfully. Please wait for the next package installation...")
    
     @staticmethod
     def installQbit():
         subprocess.run(["sudo", "apt", "update"])
         subprocess.run(["sudo", "apt", "install", "-y", "qbittorrent"])
-        print("Qbittorrent Installed !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[0m Qbittorrent has been installed successfully. Almost done...")
 
     @staticmethod
     def finish(user):
@@ -83,7 +84,7 @@ class CRDSetup:
             os.makedirs(f"/home/{user}/.config/autostart", exist_ok=True)
             link = "www.github.com/thuahahadi"
             colab_autostart = """[Desktop Entry]
-            print("Finalizing !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("⏳ Finalizing the setup...")
 
 Type=Application
 Name=Colab
@@ -114,7 +115,7 @@ X-GNOME-Autostart-enabled=true""".format(link)
 +-------------------------[by Thuaha Hadi]----------------------+      
                  
     ''')
-        print ("Congratulations! Your RDP server is now ready. You can access it through Google Remote Desktop or by using the link: https://remotedesktop.google.com. Your login credentials are provided below.\n")
+        print ("Congratulations! Your RDP server is now ready. You can access it through Google Remote Desktop app or by using the link: https://remotedesktop.google.com. Your login credentials are provided below.\n")
         print("Log in PIN : 1234") 
         print("User Name : tohan") 
         print("User Pass : root") 
