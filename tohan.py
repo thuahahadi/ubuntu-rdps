@@ -33,50 +33,52 @@ class CRDSetup:
         os.system("bash -c 'echo \"exec /etc/X11/Xsession /usr/bin/xfce4-session\" > /etc/chrome-remote-desktop-session'")
         os.system("apt remove --assume-yes gnome-terminal")
         os.system("apt install --assume-yes xscreensaver")
+        os.system("apt install --assume-yes pipewire")
+        os.system("apt install --assume-yes pipewire-audio-client-libraries")
         os.system("sudo apt purge light-locker")
         os.system("sudo apt install --reinstall xfce4-screensaver")
         os.system("systemctl disable lightdm.service")
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m XFCE4 Desktop Environment has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m XFCE4 Desktop Environment has been installed successfully. Please wait for the next package installation...\033[0m")
 
     @staticmethod
     def changewall():
-        os.system(f"curl -s -L -k -o xfce-verticals.png https://tuahahadi.wordpress.com/wp-content/uploads/2024/12/pc_wall.png")
+        os.system(f"curl -s -L -k -o xfce-verticals.png https://tuahahadi.wordpress.com/wp-content/uploads/2024/12/pc_wall-1.png")
         current_directory = os.getcwd()
         custom_wallpaper_path = os.path.join(current_directory, "xfce-verticals.png")
         destination_path = '/usr/share/backgrounds/xfce/'
         shutil.copy(custom_wallpaper_path, destination_path)
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Tohan System update successfully. Please wait for the required package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m Tohan System update successfully. Please wait for the required package installation...\033[0m")
 
     @staticmethod
     def installSnapd():
         subprocess.run(["apt", "install", "--assume-yes", "snapd"])
         subprocess.run(["snap", "install", "snap-store"])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Snap Store has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m Snap Store has been installed successfully. Please wait for the next package installation...\033[0m")
 
     @staticmethod
     def installGoogleChrome():
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"])
         subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"])
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Google Chrome has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m Google Chrome has been installed successfully. Please wait for the next package installation...\033[0m")
 
     @staticmethod
     def installCRD():
         subprocess.run(['wget', 'https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb'])
         subprocess.run(['dpkg', '--install', 'chrome-remote-desktop_current_amd64.deb'])
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Chrome Remote Desktop has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m Chrome Remote Desktop has been installed successfully. Please wait for the next package installation...\033[0m")
     
     @staticmethod
     def installTelegram():
         subprocess.run(["apt", "install", "--assume-yes", "telegram-desktop"])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Telegram Desktop has been installed successfully. Please wait for the next package installation...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m Telegram Desktop has been installed successfully. Please wait for the next package installation...\033[0m")
    
     @staticmethod
     def installQbit():
         subprocess.run(["sudo", "apt", "update"])
         subprocess.run(["sudo", "apt", "install", "-y", "qbittorrent"])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[93m Qbittorrent has been installed successfully. Almost done...")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m Qbittorrent has been installed successfully. Almost done...\033[0m")
 
     @staticmethod
     def finish(user):
@@ -84,7 +86,7 @@ class CRDSetup:
             os.makedirs(f"/home/{user}/.config/autostart", exist_ok=True)
             link = "www.github.com/thuahahadi"
             colab_autostart = """[Desktop Entry]
-            print("⏳ Finalizing the setup...")
+            print("⏳ \033[32mFinalizing the setup...\033[0m")
 
 Type=Application
 Name=Colab
@@ -104,7 +106,7 @@ X-GNOME-Autostart-enabled=true""".format(link)
         
         print(r'''
           
-+----------------------- \033[33mTohan RDP Server \033[0m----------------------+
++----------------------- Tohan RDP Server ----------------------+
 | @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ | 
 | @@@@@@        @@@     @@@  @@@@@  @@@@@  @@@@@  @@@@@  @@@@@@ |
 | @@@@@@@@@  @@@@  @@@@% @@  @@@@@  @@@@    @@@@   &@@@  @@@@@@ |
@@ -112,21 +114,21 @@ X-GNOME-Autostart-enabled=true""".format(link)
 | @@@@@@@@@  @@@  @@@@@  @@  @@@@@  @@ ______ &@  @@@*   @@@@@@ |
 | @@@@@@@@@  @@@@(    (@@@@  @@@@@  @ .@@@@@@  @  @@@@@  @@@@@@ |
 | @@@@@@@@&@@@@@@@@@@@@@@@@&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@@@@@@ |
-+-------------------------\033[36m[\033[92mby \033[91mThuaha Hadi\033[36m]\033[0m----------------------+      
++-------------------------[by Thuaha Hadi]----------------------+      
                  
     ''')
-        print ("\033[32mCongratulations! \033[0mYour RDP server is now ready. \nYou can access it through \033[32mGoogle Remote Desktop \033[0mapp or by using the link: https://remotedesktop.google.com. \nYour login credentials are provided below.\n")
+        print ("\033[32mCongratulations! \033[0mYour RDP server is now ready. \nYou can access it through \033[95mGoogle Remote Desktop \033[0mapp or by using the link: https://remotedesktop.google.com. \nYour login credentials are provided below.\n")
 
         print(r'''
             
             +------------------------------------------+  
-            |             \033[32mLogin Credentials\033[0m            |
+            |             Login Credentials            |
             +------------------------------------------+
-            |  \033[93mLog in PIN\033[0m        :       \033[96m12345678\033[0m      |
+            |  Log in PIN        :       12345678      |
             +------------------------------------------+
-            |  \033[93mUser Name\033[0m         :       \033[96mtohan\033[0m         |
+            |  User Name         :       tohan         |
             +------------------------------------------+
-            |  \033[93mUser Password\033[0m     :       \033[96mroot\033[0m          |
+            |  User Password     :       root          |
             +------------------------------------------+
               ''')
         while True:
