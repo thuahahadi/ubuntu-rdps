@@ -33,8 +33,11 @@ class CRDSetup:
         os.system("bash -c 'echo \"exec /etc/X11/Xsession /usr/bin/xfce4-session\" > /etc/chrome-remote-desktop-session'")
         os.system("apt remove --assume-yes gnome-terminal")
         os.system("apt install --assume-yes xscreensaver")
+        # Extra
         os.system("apt install --assume-yes pipewire")
         os.system("apt install --assume-yes pipewire-audio-client-libraries")
+        os.system("apt install --assume-yes dbus-x11")
+        ####
         os.system("sudo apt purge light-locker")
         os.system("sudo apt install --reinstall xfce4-screensaver")
         os.system("systemctl disable lightdm.service")
