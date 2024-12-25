@@ -18,7 +18,6 @@ class CRDSetup:
         os.system("apt update")
         self.installDesktopEnvironment()
         self.changewall()
-        self.installSnapd()
         self.installGoogleChrome()
         self.installCRD()
         self.installTelegram()
@@ -33,16 +32,17 @@ class CRDSetup:
         os.system("bash -c 'echo \"exec /etc/X11/Xsession /usr/bin/xfce4-session\" > /etc/chrome-remote-desktop-session'")
         os.system("apt remove --assume-yes gnome-terminal")
         os.system("apt install --assume-yes xscreensaver")
-        # Extra
-        os.system("apt install --assume-yes pipewire")
-        os.system("apt install --assume-yes pipewire-audio-client-libraries")
-        os.system("apt install --assume-yes dbus-x11")
-        ####
         os.system("sudo apt purge light-locker")
         os.system("sudo apt install --reinstall xfce4-screensaver")
         os.system("systemctl disable lightdm.service")
         print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m XFCE4 Desktop Environment has been installed successfully. Please wait for the next package installation...\033[0m")
-
+        # Extra
+        os.system("apt install --assume-yes dbus-x11")
+        ####
+        os.system("apt install --assume-yes snapd")
+        os.system("snap install snap-store")
+        print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m Snap Store has been installed successfully. Please wait for the next package installation...\033[0m")
+        ####
     @staticmethod
     def changewall():
         os.system(f"curl -s -L -k -o xfce-verticals.png https://tuahahadi.wordpress.com/wp-content/uploads/2024/12/pc_wall-1.png")
@@ -51,12 +51,6 @@ class CRDSetup:
         destination_path = '/usr/share/backgrounds/xfce/'
         shutil.copy(custom_wallpaper_path, destination_path)
         print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m Tohan System update successfully. Please wait for the required package installation...\033[0m")
-
-    @staticmethod
-    def installSnapd():
-        subprocess.run(["apt", "install", "--assume-yes", "snapd"])
-        subprocess.run(["snap", "install", "snap-store"])
-        print("\033[34m[ \033[32m✔︎ \033[34m] \033[96m Snap Store has been installed successfully. Please wait for the next package installation...\033[0m")
 
     @staticmethod
     def installGoogleChrome():
